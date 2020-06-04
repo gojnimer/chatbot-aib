@@ -1,19 +1,19 @@
 <!-- Sender Message-->
-<div *ngIf="ctx.user == 'sender'" class="media w-50 mb-3"><img src="assets/robot-avatar.jpg" alt="user" width="50"
+<div  *ngIf="ctx.user == 'sender'" class="media w-50 mb-3"><img src="assets/robot-avatar.jpg" alt="user" width="50"
     class="rounded-circle">
   <div class="media-body ml-3">
     <div class="bg-light rounded py-2 px-3 mb-2">
-      <p class="text-small mb-0 text-muted">{{ctx.msg}}</p>
+      <p Emoji class="text-small mb-0 text-muted">{{ctx.msg}}</p>
     </div>
     <p class="small text-muted">{{ctx.data | date:'hh:mm a | MMM d'}}</p>
   </div>
 </div>
 
 <!-- Reciever Message-->
-<div *ngIf="ctx.user == 'reciever'" class="media w-50 ml-auto mb-3">
+<div  *ngIf="ctx.user == 'reciever'" class="media w-50 ml-auto mb-3">
   <div class="media-body">
     <div class="bg-primary rounded py-2 px-3 mb-2">
-      <p class="text-small mb-0 text-white">{{ctx.msg}}</p>
+      <p Emoji class="text-small mb-0 text-white">{{ctx.msg}}</p>
     </div>
     <p class="small text-muted">{{ctx.data | date:'hh:mm a | MMM d'}}</p>
   </div>
