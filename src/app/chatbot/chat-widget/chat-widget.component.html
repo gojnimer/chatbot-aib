@@ -1,4 +1,4 @@
-<div class="col-sm-3 col-sm-offset-4 frame">
+<!-- <div class="col-sm-3 col-sm-offset-4 frame">
     <ul >
         <li *ngFor="let item of conversa">
             <p>{{ item.user }} disse:</p>
@@ -17,4 +17,37 @@
             <span (click)="submit()" style="cursor: pointer;">Enviar</span>
         </div>                
     </div>
-</div>       
+</div>        -->
+
+
+<!-- Chat Box-->
+<img src="assets/robot.png" class="rounded mx-auto d-block mt-5" *ngIf="messages.length == 0" alt="...">
+<div class="container">
+    
+    <div class="row">
+        <div class="col-12 ">
+            <div class="px-4 py-5 chat-box bg-white">
+             <ul #messageContainer [hidden]="messages.length == 0">
+                 <div *ngFor="let ctx of messages" >
+                    <message [ctx]="ctx"></message>
+                 </div>
+                
+             </ul>
+        
+            </div>
+        
+            <!-- Typing area -->
+            <div class="bg-light">
+              <div class="input-group">
+                <input type="text" (keyup.enter)="submit()" [(ngModel)]="inputMsg" placeholder="Escreva uma mensagem" aria-describedby="button-addon2" class="form-control rounded-0 border-0 py-4 bg-light">
+                <div class="input-group-append">
+                  <button id="button-addon2" type="submit" (click)="submit()" class="btn btn-link"><fa-icon [icon]="faCoffee"></fa-icon></button>
+                </div>
+              </div>
+            </div>
+        
+        </div>
+        
+    </div>
+</div>
+

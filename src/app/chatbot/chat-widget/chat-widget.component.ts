@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { MainBotService } from './../services/main-bot.service';
+import { Component, OnInit, ViewChild, ElementRef, ViewChildren, QueryList, AfterViewInit } from '@angular/core';
 import { discardPeriodicTasks } from '@angular/core/testing';
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-chat-widget',
@@ -8,43 +10,52 @@ import { discardPeriodicTasks } from '@angular/core/testing';
 })
 export class ChatWidgetComponent implements OnInit {
 
-  constructor() { }
+  constructor(private bot:MainBotService) { }
 
   ngOnInit(): void {
   }
 
-  conversa:any[] = []
+  @ViewChild("messageContainer") messageContainer: ElementRef;
+
+
+
+  disableScrollDown = false
+
+  messages:any[] = [
+    
+  ]
+
+  faCoffee = faPaperPlane;
 
   inputMsg:string;
 
   submit(){
+    
     if(!this.inputMsg){
       return;
     }
-    let m = {msg:this.inputMsg,user:"Ipsum",data:Date.now()}
-    this.conversa.push(m);
     
+    let m = {msg:this.inputMsg,user:"reciever",data:Date.now()}
+    
+    this.messages.push(m);
+    
+    this.messageContainer.nativeElement.scrollTop = this.messageContainer.nativeElement.scrollHeight;
+    
+    this.bot.talk(this.inputMsg).subscribe((res:any) => {
+  
+      console.log(res);
+      this.messages.push({user:"sender",msg:res.result.fulfillment.speech,data:new Date(res.timestamp)});
+      setTimeout(()=>{ this.messageContainer.nativeElement.scrollTop = this.messageContainer.nativeElement.scrollHeight; },1) 
 
-    this.respostaBot(m);
+    },error => console.log(error))
 
     this.inputMsg = "";
   }
 
-  delay(ms: number) {
-    return new Promise( resolve => setTimeout(resolve, ms) );
-  }
+  
 
-  async respostaBot(m){ 
-    await this.delay(500);
-    if(m.msg == "Olá"){
-      this.conversa.push({msg:"Olá, como vai você?",user:"Robô",data:Date.now()});
-      return;
-    }
-    if(m.msg == "Qual o seu nome?"){
-      this.conversa.push({msg:"Eu sou a Inteligencia Artificial BIA",user:"BIA",data:Date.now()});
-      return;
-    }
 
-  }
+  
 
+  
 }

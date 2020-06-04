@@ -33,31 +33,30 @@
 .msj{
     float:left;background:white;
 }
+
 .frame{
     background:#e0e0de;
     height:450px;
+    max-height: 450px;
     overflow:hidden;
     padding:0;
 }
 .frame > div:last-of-type{
     position:absolute;bottom:0;width:100%;display:flex;
 }
-body > div > div > div:nth-child(2) > span{
-    background: whitesmoke;padding: 10px;font-size: 21px;border-radius: 50%;
-}
-body > div > div > div.msj-rta.macro{
-    margin:auto;margin-left:1%;
-}
+
 ul {
     width:100%;
+    height: 700px;
+    max-height: 700px;
     list-style-type: none;
-    padding:18px;
-    position:absolute;
-    bottom:47px;
+   
+ 
     display:flex;
     flex-direction: column;
-    top:0;
-    overflow-y:scroll;
+   
+    overflow:hidden;
+     overflow-y: auto;
 }
 .msj:before{
     width: 0;

@@ -27,7 +27,7 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   exports:[
   ],
-  providers:[SecurityService]
+  providers:[]
 
 })
 export class SecurityModule { }

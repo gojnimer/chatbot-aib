@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(){
     localStorage.clear();
+    this.httpController.LoggedIn.next(false);
   }
 
   onSubmit(){
@@ -53,6 +54,7 @@ export class LoginComponent implements OnInit {
 
       if(success.length >= 1 ){
         localStorage.setItem('token','logado');
+        this.httpController.LoggedIn.next(true);
         this.routing.navigate(['/index']);
       }
       else{
